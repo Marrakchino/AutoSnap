@@ -1,7 +1,6 @@
 @setlocal enableextensions enabledelayedexpansion
 @echo off
 TITLE VMSNAP!
-REM a comment line
 
 REM Change the 2 following lines with your own parameters
 set path=""
