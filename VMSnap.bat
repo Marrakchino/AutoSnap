@@ -1,29 +1,30 @@
 @setlocal enableextensions enabledelayedexpansion
 @echo off
-TITLE SNAPSHOT!
+TITLE VMSNAP!
 REM a comment line
 
-
-set path="C:\Program Files\Oracle\VirtualBox"
-set vm="marrakchino"
+REM Change the 2 following lines with your own parameters
+set path=""
+set vm=""
 
 cd %path%
 set list_vms="VBoxManage.exe list runningvms"
 FOR /F "tokens=*" %%i IN (' %list_vms% ') DO SET result=%%i
 
-REM checks if the list of running vms contains the our vm
+REM checks if the list of running vms contains our vm
 if not "x!result:%vm%=!"=="x%result%" (
 	REM FOUND!
-	goto found
+	goto found  
 ) else (
 	goto end
-	REM goto:eof??
+	REM goto:eof  ??
 )
 
 :found
+REM time format: DD_MM_YYYY-HH:mm
 set date=%DATE:~0,2%_%DATE:~3,2%_%DATE:~6,4%-%TIME:~1,4%
-set take_snapshot="VBoxManage.exe snaphot %vm% take %date% --live"
-echo %date%
+echo Taking a snapshot of %vm% ...
+start "" "VBoxManage.exe" snapshot "%vm%" take "%date%" --live
 pause
 
 :end
