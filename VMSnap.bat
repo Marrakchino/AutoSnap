@@ -21,7 +21,7 @@ if not "x!result:%vm%=!"=="x%result%" (
 
 :found
 REM time format: DD_MM_YYYY-HH:mm
-set date=%DATE:~0,2%_%DATE:~3,2%_%DATE:~6,4%-%TIME:~1,4%
+set date=%DATE:~0,2%_%DATE:~3,2%_%DATE:~6,4%-%TIME:~0,5%
 echo Taking a snapshot of %vm% ...
 start "" "VBoxManage.exe" snapshot "%vm%" take "%date%" --live
 pause
